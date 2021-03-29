@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_object_or_404
 from .forms import Postform
 from .models import Write,Answer
 # Create your views here.
@@ -24,3 +24,9 @@ def postcreate(request):
         form = Postform()
 
     return render(request,'post_form.html',{'form' : form})
+
+def detail(request,question_id):
+
+    question_id = get_object_or_404(Write,pk = question_id)
+    context = {'question_id':question_id}
+    return render(request,'detail.html',context)

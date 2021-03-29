@@ -7,3 +7,7 @@ class Postform(forms.ModelForm):
         model = Write
         fields = '__all__'
        # fields = ['subject','content']
+        labels = {
+            'subject': '제목',
+            'content': '내용',
+        }

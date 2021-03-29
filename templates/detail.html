@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    {% if question_id %}
+
+       <h1> 제목:{{ question_id.subject }}</h1>
+        <h2>내용:{{ question_id.content }}</h2>
+        작성날짜:{{ question_id.create_date }}<br>
+    {% endif %}
+{% endblock %}

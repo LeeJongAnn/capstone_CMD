@@ -46,7 +46,7 @@
 
 
                     <tr>
-                        <td>{{ question.subject }}</td>
+                        <td><a href="{% url 'detail' question.id %}">{{ question.subject }}</a></td>
                         <td>{{ question.create_date }}</td>
                         <td>글쓴이</td>
                     </tr>
