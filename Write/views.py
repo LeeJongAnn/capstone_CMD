@@ -2,12 +2,20 @@ from django.shortcuts import render,redirect,get_object_or_404
 from .forms import QuestionForm , AnswerForm
 from .models import Write,Answer
 from django.utils import timezone
+from django.core.paginator import Paginator
 # Create your views here.
 
 # 첫화면
 def index(request):
+
+
     question_list = Write.objects.order_by('-create_date')
-    return render(request, 'index.html', {'question_list': question_list})
+    page = request.GET.get('page', '1')  # 페이지
+    paginator = Paginator(question_list, 10)  # 페이지당 10개씩 보여주기
+    page_obj = paginator.get_page(page)
+    context = {'question_list': page_obj}
+
+    return render(request, 'index.html', context=context)
 
 
 # 디테일 페이지 추가
@@ -38,13 +46,9 @@ def question_create(request):
     context = {'form': form}
     return render(request, 'post_form.html', context)
 
-
+#답변 등록
 def answer_create(request, question_id):
-    """
-    pybo 답변등록
-    """
     question = get_object_or_404(Write, pk=question_id)
     question.answer_set.create(content=request.POST.get('content'), create_date=timezone.now())
-# ---------------------------------- [edit] ---------------------------------- #
     return redirect('detail', question_id=question.id)
 
