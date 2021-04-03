@@ -27,8 +27,8 @@ def detail(request,question_id):
 
 
 # 로그인 사이트 연결
-def login(request):
-    return render(request,'login.html')
+# def login(request):
+#     return render(request,'login.html')
 
 # 질문등록
 

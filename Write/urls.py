@@ -10,5 +10,6 @@ urlpatterns = [
     path('index',views.index,name = 'index'),
     # path('login',views.login,name = 'login'),
     path('detail/<int:question_id>',views.detail,name = 'detail'),
-    path('answer_create/<int:question_id>',views.answer_create,name='answer_create')
+    path('answer_create/<int:question_id>',views.answer_create,name='answer_create'),
+
 ]
