@@ -101,13 +101,14 @@
             </li>
         {% endif %}
     </ul>
+    {% if user.is_authenticated %}
     <a href="{% url 'question_create' %}" class="btn btn-primary btn-icon-split">
                                         <span class="icon text-white-50">
                                             <i class="fas fa-flag"></i>
                                         </span>
         <span class="text">글쓰기</span>
     </a>
-
+    {% endif %}
     <!-- /.container-fluid -->
     {# 다중 페이지 처리하기 #}
     {#    <div class="row">#}
