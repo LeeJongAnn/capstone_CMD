@@ -38,6 +38,7 @@ def question_create(request):
         form = QuestionForm(request.POST)
         if form.is_valid():
             question = form.save(commit=False)
+            question.author = request.user
             question.create_date = timezone.now()
             question.save()
             return redirect('index')
@@ -47,8 +48,22 @@ def question_create(request):
     return render(request, 'post_form.html', context)
 
 #답변 등록
-def answer_create(request, question_id):
-    question = get_object_or_404(Write, pk=question_id)
-    question.answer_set.create(content=request.POST.get('content'), create_date=timezone.now())
-    return redirect('detail', question_id=question.id)
+# def answer_create(request, question_id):
+#     question = get_object_or_404(Write, pk=question_id)
+#     question.answer_set.create(content=request.POST.get('content'), create_date=timezone.now())
+#     return redirect('detail', question_id=question.id)
+#
 
+def answer_create(request,question_id):
+    if request.method == 'POST':
+        form = AnswerForm(request.POST)
+        if form.is_valid():
+            answer = form.save(commit=False)
+            answer.author = request.user
+            answer.create_date = timezone.now()
+            answer.save()
+            return redirect('index')
+    else:
+        form = AnswerForm()
+    context = {'form': form}
+    return render(request, 'post_form.html', context)
