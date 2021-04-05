@@ -1,6 +1,5 @@
 from django.contrib import auth
 from django.contrib.auth import authenticate
-from django.contrib.auth import login as auth_login
 from django.shortcuts import render, redirect
 from common.forms import UserForm
 
@@ -8,8 +7,8 @@ from common.forms import UserForm
 
 def login(request):
     if request.method == "POST":
-        username = request.POST["username"]
-        password = request.POST["password"]
+        username = request.POST.get("username")
+        password = request.POST.get("password")
         user = auth.authenticate(request, username=username, password=password)
 
         if user is not None:
