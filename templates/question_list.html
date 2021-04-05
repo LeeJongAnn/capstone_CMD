@@ -42,22 +42,27 @@
                     </thead>
 
                     <tbody>
-                    {% for question in question_list %}
-
-
+                    {% if question_list %}
+                        {% for question in question_list %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>
+                                    <a href="{% url 'pybo:detail' question.id %}">{{ question.subject }}</a>
+                                </td>
+                                <td>{{ question.create_date }}</td>
+                            </tr>
+                        {% endfor %}
+                    {% else %}
                         <tr>
-                            <td>{{ question.subject }}</td>
-                            <td>{{ question.create_date }}</td>
-                            <td>글쓴이</td>
+                            <td colspan="3">질문이 없습니다.</td>
                         </tr>
-
-
-                        </tbody>
-                    {% endfor %}
+                    {% endif %}
+                    </tbody>
                 </table>
             </div>
         </div>
     </div>
+    <a href="{% url 'pybo:question_create' %}" class="btn btn-primary">질문 등록하기</a>
     {#    <a href="{% url 'postcreate' %}" class="btn btn-primary btn-icon-split">#}
     {#                                        <span class="icon text-white-50">#}
     {#                                            <i class="fas fa-flag"></i>#}
