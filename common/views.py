@@ -1,5 +1,6 @@
 from django.contrib import auth
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate
+from django.contrib.auth import login as auth_login
 from django.shortcuts import render, redirect
 from common.forms import UserForm
 
