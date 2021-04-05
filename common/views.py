@@ -6,7 +6,7 @@ from common.forms import UserForm
 
 
 
-def login(request):
+def login(request,user):
     if request.method == "POST":
         username = request.POST["username"]
         password = request.POST["password"]
