@@ -6,7 +6,6 @@ from django.utils import timezone
 
 # Create your views here.
 
-
 def index(request):
     question_list = Question.objects.order_by('-create_date')
     context = {'question_list': question_list}
@@ -17,10 +16,8 @@ def detail(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
     context = {'question': question}
     return render(request, 'question_detail.html', context)
+
 def answer_create(request, question_id):
-    """
-    pybo 답변등록
-    """
     question = get_object_or_404(Question, pk=question_id)
     if request.method == "POST":
         form = AnswerForm(request.POST)
@@ -37,9 +34,6 @@ def answer_create(request, question_id):
 
 
 def question_create(request):
-    """
-    pybo 질문등록
-    """
     if request.method == 'POST':
         form = QuestionForm(request.POST)
         if form.is_valid():
