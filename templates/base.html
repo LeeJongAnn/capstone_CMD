@@ -360,11 +360,11 @@
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                         <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+
                                         Logout
                                     </a>
                                 {% else %}
-                                    <a href="{% url 'common:login' %}"
-                                       class="fas fa-user fa-sm fa-fw mr-2 text-gray-400 text-center">Login</a><br>
+                                    <a href="{% url 'common:login' %}" class="fas fa-user fa-sm fa-fw mr-5 text-gray-400 align-content-between">Login</a><br>
                                     <span>또는 <a href="{% url 'common:signup' %}">계정을 만드세요.</a></span>
 
                                 {% endif %}
