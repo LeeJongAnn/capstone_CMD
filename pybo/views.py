@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Question, Answer
-from .forms import QuestionForm, AnswerForm
+from .forms import QuestionForm, AnswerForm,CMDForm
 from django.utils import timezone
 
 
@@ -42,6 +42,20 @@ def question_create(request):
             question.create_date = timezone.now()
             question.author = request.user
             question.save()
+            return redirect('pybo:index')
+    else:
+        form = QuestionForm()
+    context = {'form': form}
+    return render(request, 'question_form.html', context)
+# 차량정보관리 폼
+def CMD_create(request):
+    if request.method == 'POST':
+        form = CMDForm(request.POST)
+        if form.is_valid():
+            cmd_create = form.save(commit=False)
+            cmd_create.create_date = timezone.now()
+            cmd_create.author = request.user
+            cmd_create.save()
             return redirect('pybo:index')
     else:
         form = QuestionForm()
