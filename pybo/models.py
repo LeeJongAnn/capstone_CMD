@@ -23,5 +23,10 @@ class CMD_Information(models.Model):
     Car_num = models.CharField(max_length=15)
     Car_variety = models.CharField(max_length=10)
     Car_manager = models.CharField(max_length=10)
-    modify_date = models.DateTimeField(null=True, blank=True)
-    user_num = models.IntegerField()
+    time_start = models.DateTimeField(null=True,blank=True)
+    time_end= models.DateTimeField(null=True,blank=True)
+    position_start = models.TextField()
+    position_end = models.TextField()
+
+    modify_date = models.DateTimeField(verbose_name="수정날짜",null=True, blank=True)
+    user_num = models.IntegerField(verbose_name="사번")
