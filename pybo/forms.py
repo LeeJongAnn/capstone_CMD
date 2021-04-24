@@ -1,14 +1,18 @@
 from django import forms
-from pybo.models import Question,Answer,CMD_Information
+from pybo.models import Question,Answer
 
 
 class QuestionForm(forms.ModelForm):
     class Meta:
         model = Question
-        fields = ['subject', 'content']
+        fields = ['Car_num','bussiness_num','Car_variety','Car_manager']
         labels = {
-            'subject': '제목',
-            'content': '내용',
+
+            'Car_num':'차량번호',
+            'Car_variety':'차량종류',
+            'Car_manager':'차량책임자',
+            'bussiness_num': '사번'
+
         }
 
 class AnswerForm(forms.ModelForm):
@@ -19,16 +23,3 @@ class AnswerForm(forms.ModelForm):
             'content': '답변내용',
         }
 
-
-# 공용차량등록폼
-
-class CMDForm(forms.ModelForm):
-    class Meta:
-        model = CMD_Information
-        fields = ['Car_num','Car_variety','Car_manager','user_num']
-        labels = {
-            'Car_num':'차량번호',
-            'Car_variety':'차종',
-            'Car_manager':'차량관리자',
-            'user_num':'사번'
-        }

@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Question, Answer
-from .forms import QuestionForm, AnswerForm, CMDForm
+from .forms import QuestionForm, AnswerForm
 from django.utils import timezone
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -113,17 +113,4 @@ def answer_delete(request, answer_id):
     else:
         answer.delete()
     return redirect('pybo:detail', question_id=answer.question.id)
-# 차량정보관리 폼
-# def CMD_create(request):
-#     if request.method == 'POST':
-#         form = CMDForm(request.POST)
-#         if form.is_valid():
-#             cmd_create = form.save(commit=False)
-#             cmd_create.create_date = timezone.now()
-#             cmd_create.author = request.user
-#             cmd_create.save()
-#             return redirect('pybo:index')
-#     else:
-#         form = QuestionForm()
-#     context = {'form': form}
-#     return render(request, 'question_form.html', context)
+
