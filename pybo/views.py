@@ -13,6 +13,12 @@ def index(request):
     context = {'question_list': question_list}
     return render(request, 'question_list.html', context)
 
+def daily_request(request):
+    question_list = Question.objects.order_by('-create_date')
+    context = {'question_list': question_list}
+    return render(request, 'daily.html', context)
+
+
 
 def detail(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
