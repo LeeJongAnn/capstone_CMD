@@ -13,10 +13,27 @@ def index(request):
     context = {'question_list': question_list}
     return render(request, 'question_list.html', context)
 
-def daily_request(request):
+def daily_list(request):
     question_list = Question.objects.order_by('-create_date')
     context = {'question_list': question_list}
     return render(request, 'pybo/drive_list.html', context)
+
+
+@login_required(login_url='common:login')
+def question_create2(request):
+    if request.method == 'POST':
+        form = QuestionForm(request.POST)
+        if form.is_valid():
+            question = form.save(commit=False)
+            question.create_date = timezone.now()
+            question.author = request.user
+            question.save()
+            return redirect('pybo:index')
+    else:
+        form = QuestionForm()
+    context = {'form': form}
+    return render(request, 'question_form.html', context)
+
 
 
 
