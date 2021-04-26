@@ -16,7 +16,7 @@ def index(request):
 def daily_request(request):
     question_list = Question.objects.order_by('-create_date')
     context = {'question_list': question_list}
-    return render(request, 'daily.html', context)
+    return render(request, 'pybo/drive_list.html', context)
 
 
 

@@ -1,4 +1,5 @@
-
+{% extends 'base.html' %}
+{% block content %}
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
 <div class="container my-3">
@@ -6,11 +7,10 @@
 
 {#    <h2 class="border-bottom py-2">{{ question.subject }}</h2>#}
     <div class="card my-3">
-        <span>출발지</span>
-        <span>도착지</span>
-        <span>운행시간</span>
-        <span>도착시간</span>
-        <span>출발시간</span>
+        <li class="list-group-item">차량번호 : {{ question.Car_num }}</li>
+                    <li class="list-group-item">차량종류 : {{ question.Car_variety }}</li>
+                    <li class="list-group-item">차량 관리자 : {{ question.Car_manager }}</li>
+                    <li class="list-group-item">사번 : {{ question.bussiness_num }}</li>
         <div class="card-body">
             <div class="card-text" style="white-space: pre-line;">{{ question.content }}</div>
             <div class="d-flex justify-content-end">
@@ -41,3 +41,4 @@
         <input type="submit" value="답변등록" class="btn btn-primary">
     </form>
 </div>
+{% endblock %}

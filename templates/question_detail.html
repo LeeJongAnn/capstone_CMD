@@ -16,7 +16,7 @@
                 {% endfor %}
             </div>
         {% endif %}
-        <button class="button"><a href="{% url 'pybo:index' %}">돌아가기</a></button>
+        <button class="btn btn-facebook"><a href="{% url 'pybo:index' %}">돌아가기</a></button>
         <h2 class="border-bottom py-2">{{ question.subject }}</h2>
         <div class="card my-3">
 
@@ -24,10 +24,10 @@
                         <div class="card-body">
                               <div class="card" style="width: 18rem;">
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item">{{ question.Car_num }}</li>
-                    <li class="list-group-item">{{ question.Car_variety }}</li>
-                    <li class="list-group-item">{{ question.Car_manager }}</li>
-                    <li class="list-group-item">{{ question.bussiness_num }}</li>
+                    <li class="list-group-item">차량번호 : {{ question.Car_num }}</li>
+                    <li class="list-group-item">차량종류 : {{ question.Car_variety }}</li>
+                    <li class="list-group-item">차량 관리자 : {{ question.Car_manager }}</li>
+                    <li class="list-group-item">사번 : {{ question.bussiness_num }}</li>
                 </ul>
             </div>
             {#                <div class="card-text" style="white-space: pre-line;">{{ question.Car_num }}</div>#}
