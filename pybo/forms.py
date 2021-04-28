@@ -15,7 +15,7 @@ class QuestionForm(forms.ModelForm):
 
         }
 
-class QuestionForm(forms.ModelForm):
+class CMD_TravelForm(forms.ModelForm):
     class Meta:
         model = Question
         fields = ['Car_num','bussiness_num',
