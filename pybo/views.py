@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Question, Answer
-from .forms import QuestionForm, AnswerForm
+from .models import Question, Answer,CMD_Information
+from .forms import QuestionForm, AnswerForm,CMD_TravelForm
 from django.utils import timezone
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -13,28 +13,26 @@ def index(request):
     context = {'question_list': question_list}
     return render(request, 'question_list.html', context)
 
-def daily_list(request):
-    question_list = Question.objects.order_by('-create_date')
-    context = {'question_list': question_list}
+def index2(request):
+    cmd_list = CMD_Information.objects.order_by('-create_date')
+    context = {'cmd_list': cmd_list}
     return render(request, 'pybo/drive_list.html', context)
 
 
 @login_required(login_url='common:login')
-def question_create2(request):
+def cmd_question_create(request):
     if request.method == 'POST':
-        form = QuestionForm(request.POST)
+        form = CMD_TravelForm(request.POST)
         if form.is_valid():
-            question = form.save(commit=False)
-            question.create_date = timezone.now()
-            question.author = request.user
-            question.save()
-            return redirect('pybo:index')
+            cmd_question = form.save(commit=False)
+            cmd_question.create_date = timezone.now()
+            cmd_question.author = request.user
+            cmd_question.save()
+            return redirect('pybo:daily_list')
     else:
-        form = QuestionForm()
+        form = CMD_TravelForm()
     context = {'form': form}
-    return render(request, 'question_form.html', context)
-
-
+    return render(request, 'pybo/question_form2.html', context)
 
 
 def detail(request, question_id):
