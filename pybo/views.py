@@ -18,6 +18,12 @@ def index2(request):
     context = {'cmd_list': cmd_list}
     return render(request, 'pybo/drive_list.html', context)
 
+def cmd_detail(request, cmd_id):
+    cmd= get_object_or_404(cmd_question_create, pk=cmd_id)
+    context = {'cmd': cmd}
+    return render(request, 'pybo/drive_detail.html', context)
+
+
 
 @login_required(login_url='common:login')
 def cmd_question_create(request):

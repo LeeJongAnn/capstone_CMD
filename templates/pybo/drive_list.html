@@ -49,27 +49,28 @@
                 <th style="width:100px">차량등록번호</th>
                 <th>사번</th>
                 <th>운행날짜</th>
-                <th>사번</th>
+                <th>출발지</th>
+                <th>도착지</th>
                 <th>작성날짜</th>
                 <th>작성자</th>
             </tr>
             </thead>
             <tbody>
-            {% if question_list %}
-                {% for question in question_list %}
+            {% if cmd_list %}
+                {% for cmd_list_new in cmd_list %}
                     <tr>
                         <td>{{ forloop.counter }}</td>
                         <td>
-                            <a href="{% url 'pybo:detail' question.id %}">{{ question.Car_num }}</a>
-                            {% if question.answer_set.count > 0 %}
-                                <span class="text-danger small ml-2">{{ question.answer_set.count }}</span>
+                            <a href="{% url 'pybo:cmd_detail' cmd_list_new.id %}">{{ cmd_list_new.Car_num }}</a>
+                            {% if cmd_list_new.answer_set.count > 0 %}
+                                <span class="text-danger small ml-2">{{ cmd_list_new.answer_set.count }}</span>
                             {% endif %}
                         </td>
-                        <td>{{ question.Car_variety}}</td>
-                        <td>{{ question.Car_manager }}</td>
-                        <td>{{ question.bussiness_num }}</td>
-                        <td>{{ question.create_date }}</td>
-                        <td>{{ question.author.username }}</td>
+                        <td>{{ cmd_list_new.Car_variety}}</td>
+                        <td>{{ cmd_list_new.Car_manager }}</td>
+                        <td>{{ cmd_list_new.bussiness_num }}</td>
+                        <td>{{ cmd_list_new.create_date }}</td>
+                        <td>{{ cmd_list_new.author.username }}</td>
                     </tr>
                 {% endfor %}
             {% else %}
