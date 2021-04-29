@@ -13,39 +13,27 @@ def index(request):
     context = {'question_list': question_list}
     return render(request, 'question_list.html', context)
 
-def index2(request):
-    cmd_list = CMD_Information.objects.order_by('-create_date')
-    context = {'cmd_list': cmd_list}
-    return render(request, 'pybo/drive_list.html', context)
-
-def cmd_detail(request, cmd_id):
-    cmd= get_object_or_404(cmd_question_create, pk=cmd_id)
-    context = {'cmd': cmd}
-    return render(request, 'pybo/drive_detail.html', context)
-
-
-
-@login_required(login_url='common:login')
-def cmd_question_create(request):
-    if request.method == 'POST':
-        form = CMD_TravelForm(request.POST)
-        if form.is_valid():
-            cmd_question = form.save(commit=False)
-            cmd_question.create_date = timezone.now()
-            cmd_question.author = request.user
-            cmd_question.save()
-            return redirect('pybo:index2')
-    else:
-        form = CMD_TravelForm()
-    context = {'form': form}
-    return render(request, 'pybo/question_form2.html', context)
-
-
 def detail(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
     context = {'question': question}
     return render(request, 'question_detail.html', context)
 
+
+
+@login_required(login_url='common:login')
+def question_create(request):
+    if request.method == 'POST':
+        form = QuestionForm(request.POST)
+        if form.is_valid():
+            question = form.save(commit=False)
+            question.create_date = timezone.now()
+            question.author = request.user
+            question.save()
+            return redirect('pybo:index')
+    else:
+        form = QuestionForm()
+    context = {'form': form}
+    return render(request, 'question_form.html', context)
 
 @login_required(login_url='common:login')
 def answer_create(request, question_id):
@@ -64,21 +52,6 @@ def answer_create(request, question_id):
     context = {'question': question, 'form': form}
     return render(request, 'question_detail.html', context)
 
-
-@login_required(login_url='common:login')
-def question_create(request):
-    if request.method == 'POST':
-        form = QuestionForm(request.POST)
-        if form.is_valid():
-            question = form.save(commit=False)
-            question.create_date = timezone.now()
-            question.author = request.user
-            question.save()
-            return redirect('pybo:index')
-    else:
-        form = QuestionForm()
-    context = {'form': form}
-    return render(request, 'question_form.html', context)
 
 
 @login_required(login_url='common:login')

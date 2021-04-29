@@ -1,14 +1,17 @@
 from django.urls import path
 
 from . import views
+from . import views_drive
 
 app_name = 'pybo'
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('drive_list/', views.index2, name='index2'),
-    path('drive_list/request/', views.cmd_question_create, name='cmd_question_create'),
-    path('drive_list/<int:cmd_id>/', views.cmd_detail, name='cmd_detail'),
+    path('drive_list/', views_drive.index2, name='index2'),
+    path('drive_list/request/', views_drive.cmd_question_create, name='cmd_question_create'),
+    path('drive_list/<int:cmd_id>/', views_drive.cmd_detail, name='cmd_detail'),
+    path('drive_list/create/<int:cmd_id>/', views_drive.cmd_answer_create, name='cmd_answer_create'),
+
 
     path('<int:question_id>/', views.detail, name='detail'),
     path('answer/create/<int:question_id>/', views.answer_create, name='answer_create'),

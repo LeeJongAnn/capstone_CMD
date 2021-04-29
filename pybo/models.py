@@ -45,3 +45,12 @@ class CMD_Information(models.Model):
     def __str__(self):
          return self.Car_num
 
+
+
+class CMD_Answer(models.Model):
+    question = models.ForeignKey(CMD_Information, on_delete=models.CASCADE)
+    content = models.TextField()
+    create_date = models.DateTimeField()
+    modify_date = models.DateTimeField(null=True, blank=True)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+
