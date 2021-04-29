@@ -40,11 +40,11 @@ def cmd_answer_create(request, cmd_id):
     if request.method == "POST":
         form = CMD_AnswerForm(request.POST)
         if form.is_valid():
-            cmd_list = form.save(commit=False)
-            cmd_list.create_date = timezone.now()
-            cmd_list.author = request.user
-            cmd_list.cmd_list = cmd_list
-            cmd_list.save()
+            cmd_answer = form.save(commit=False)
+            cmd_answer.create_date = timezone.now()
+            cmd_answer.author = request.user
+            cmd_answer.cmd_list = cmd_list
+            cmd_answer.save()
             return redirect('pybo:cmd_detail', cmd_id=cmd_list.id)
     else:
         form = CMD_AnswerForm()
