@@ -28,7 +28,7 @@ def cmd_question_create(request):
             cmd_question.create_date = timezone.now()
             cmd_question.author = request.user
             cmd_question.save()
-            return redirect('pybo:daily_list')
+            return redirect('pybo:index2')
     else:
         form = CMD_TravelForm()
     context = {'form': form}

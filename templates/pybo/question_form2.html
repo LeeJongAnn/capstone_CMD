@@ -17,15 +17,15 @@
                 </div>
             {% endif %}
             <!-- 오류표시 End -->
-                        <div class="form-group">
-                            <label for="subject">제목</label>
-                            <input type="text" class="form-control" name="subject" id="subject"
-                                   value="{{ form.Car_num.value|default_if_none:'' }}">
-                        </div>
+{#                        <div class="form-group">#}
+{#                            <label for="subject">제목</label>#}
+{#                            <input type="text" class="form-control" name="subject" id="subject"#}
+{#                                   value="{{ form.Car_num.value|default_if_none:'' }}">#}
+{#                        </div>#}
 
             <div class="input-group flex-nowrap mt-5 inline-group">
-                <span class="input-group-text" id="addon-wrapping">차량번호</span>
-                <input type="text" class="form-control" name="Car_num" id="Car_num" placeholder=""
+                <span class="input-group-text" id="addon-wrapping">선택차량번호</span>
+                <input type="text" class="form-control" name="Car_num" id="Car_num" placeholder="운행한 차량번호를 입력하세요"
                        aria-label="Car Number"
                        aria-describedby="addon-wrapping"/>
                 {#                <div class="buttonstyle" id="addon-wrapping">#}
@@ -64,7 +64,7 @@
             </div>
             <div class="input-group flex-nowrap mt-5 inline-group">
                 <span class="input-group-text" id="addon-wrapping">출발시간</span>
-                <input type="text" class="form-control" name="time_start" id="time_start" placeholder=""
+                <input type="text" class="form-control" name="time_start" id="time_start" placeholder="YY-MM-DD HH:MM 형식으로 입력해주세요"
                        aria-label="Car Number"
                        aria-describedby="addon-wrapping"/>
             </div>
@@ -72,7 +72,7 @@
 
             <div class="input-group flex-nowrap mt-5 inline-group">
                 <span class="input-group-text" id="addon-wrapping">도착시간</span>
-                <input type="text" class="form-control" name="time_end" id="time_end" placeholder=""
+                <input type="text" class="form-control" name="time_end" id="time_end" placeholder="YY-MM-DD HH:MM 형식으로 입력해주세요"
                        aria-label="Car Number"
                        aria-describedby="addon-wrapping"/>
             </div>
