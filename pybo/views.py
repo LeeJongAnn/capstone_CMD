@@ -7,6 +7,9 @@ from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
+def static(request):
+    return render(request, 'test2.html')
+
 
 def index(request):
     question_list = Question.objects.order_by('-create_date')

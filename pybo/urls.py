@@ -10,7 +10,7 @@ urlpatterns = [
     path('drive_list/<int:question_id>/', views_drive.CMD_detail, name='CMD_detail'),
     path('drive_list/answer/create/<int:question_id>/', views_drive.CMD_answer_create, name='CMD_answer_create'),
     path('drive_list/question/create/', views_drive.CMD_question_create, name='CMD_question_create'),
-
+    path('static/',views.static,name='static'),
 
     path('', views.index, name='index'),
     path('<int:question_id>/', views.detail, name='detail'),
