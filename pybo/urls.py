@@ -8,7 +8,7 @@ app_name = 'pybo'
 urlpatterns = [
     path('drive_list/', views_drive.CMD_index, name='CMD_index'),
     path('drive_list/<int:question_id>/', views_drive.CMD_detail, name='CMD_detail'),
-    # path('drive_list/answer/create/<int:question_id>/', views_drive.answer_create, name='CMD_answer_create'),
+    path('drive_list/answer/create/<int:question_id>/', views_drive.CMD_answer_create, name='CMD_answer_create'),
     path('drive_list/question/create/', views_drive.CMD_question_create, name='CMD_question_create'),
 
 

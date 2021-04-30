@@ -34,9 +34,10 @@ def CMD_answer_create(request, question_id):
         if form.is_valid():
             answer = form.save(commit=False)
             answer.create_date = timezone.now()
+            answer.author = request.user
             answer.question = question
             answer.save()
-            return redirect('pybo:detail', question_id=question.id)
+            return redirect('pybo:CMD_detail', question_id=question.id)
     else:
         form = AnswerForm()
     context = {'question': question, 'form': form}
@@ -50,6 +51,7 @@ def CMD_question_create(request):
         if form.is_valid():
             question = form.save(commit=False)
             question.create_date = timezone.now()
+            question.author = request.user
             question.save()
             return redirect('pybo:CMD_index')
     else:

@@ -37,14 +37,14 @@ class CMD_Question(models.Model):
     start_pos = models.CharField(max_length=10)
     destination_pos = models.CharField(max_length=10)
 
-    depart_date = models.CharField(max_length=10)
-    arrive_date =models.CharField(max_length=10)
+    depart_date = models.CharField(max_length=25)
+    arrive_date =models.CharField(max_length=25)
 
     create_date = models.DateTimeField()
     modify_date = models.DateTimeField(null=True, blank=True)
 
 
 class CMD_Answer(models.Model):
-    question = models.ForeignKey(Question, on_delete=models.CASCADE)
+    question = models.ForeignKey(CMD_Question, on_delete=models.CASCADE)
     content = models.TextField()
     create_date = models.DateTimeField()

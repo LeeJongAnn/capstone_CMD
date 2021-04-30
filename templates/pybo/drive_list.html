@@ -56,21 +56,21 @@
             </tr>
             </thead>
             <tbody>
-            {% if cmd_list %}
-                {% for cmd_list_new in cmd_list %}
+            {% if question_list %}
+                {% for question in question_list %}
                     <tr>
                         <td>{{ forloop.counter }}</td>
                         <td>
-                            <a href="{% url 'pybo:cmd_detail' cmd_list_new.id %}">{{ cmd_list_new.Car_num }}</a>
-                            {% if cmd_list_new.answer_set.count > 0 %}
-                                <span class="text-danger small ml-2">{{ cmd_list_new.answer_set.count }}</span>
+                            <a href="{% url 'pybo:CMD_detail' question.id %}">{{ question.Car_num }}</a>
+                            {% if question.answer_set.count > 0 %}
+                                <span class="text-danger small ml-2">{{ question.answer_set.count }}</span>
                             {% endif %}
                         </td>
-                        <td>{{ cmd_list_new.cmd_bussiness_num}}</td>
-                        <td>{{ cmd_list_new.start_date}}</td>
-                        <td>{{ cmd_list_new.position_start }}</td>
-                        <td>{{ cmd_list_new.position_end}}</td>
-                        <td>{{ cmd_list_new.author.username }}</td>
+                        <td>{{ question.cmd_bussiness_num}}</td>
+                        <td>{{ question.start_date}}</td>
+                        <td>{{ question.position_start }}</td>
+                        <td>{{ question.position_end}}</td>
+                        <td>{{ question.author.username }}</td>
                     </tr>
                 {% endfor %}
             {% else %}
@@ -83,9 +83,9 @@
     </div>
     <ul class="pagination justify-content-center">
         <!-- 이전페이지 -->
-        {% if cmd_list_new.has_previous %}
+        {% if question.has_previous %}
             <li class="page-item">
-                <a class="page-link" href="?page={{ cmd_list_new.previous_page_number }}">이전</a>
+                <a class="page-link" href="?page={{ question.previous_page_number }}">이전</a>
             </li>
         {% else %}
             <li class="page-item disabled">
@@ -93,8 +93,8 @@
             </li>
         {% endif %}
         <!-- 페이지리스트 -->
-        {% for page_number in cmd_list_new.paginator.page_range %}
-            {% if page_number >= cmd_list_new.number|add:-5 and page_number <= cmd_list_new.number|add:5 %}
+        {% for page_number in question.paginator.page_range %}
+            {% if page_number >= question.number|add:-5 and page_number <= question.number|add:5 %}
                 {% if page_number == cmd_list_new.number %}
                     <li class="page-item active" aria-current="page">
                         <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
@@ -107,9 +107,9 @@
             {% endif %}
         {% endfor %}
         <!-- 다음페이지 -->
-        {% if cmd_list_new.has_next %}
+        {% if question.has_next %}
             <li class="page-item">
-                <a class="page-link" href="?page={{ cmd_list_new.next_page_number }}">다음</a>
+                <a class="page-link" href="?page={{ question.next_page_number }}">다음</a>
             </li>
         {% else %}
             <li class="page-item disabled">

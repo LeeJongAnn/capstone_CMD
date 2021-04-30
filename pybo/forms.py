@@ -46,5 +46,5 @@ class CMD_QuestionForm(forms.ModelForm):
 #         labels = {
 #             'content': '답변내용',
 #         }
-#
-#
+
+
