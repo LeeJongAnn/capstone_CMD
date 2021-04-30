@@ -26,8 +26,10 @@
             <ul class="list-group list-group-flush">
                 <li class="list-group-item">차량번호 : {{ question.Car_num }}</li>
                 <li class="list-group-item">운행날짜 : {{ question.start_date }}</li>
-                <li class="list-group-item">출발시간 : {{ question.time_start }}</li>
-                <li class="list-group-item">도착시간: {{ question.time_end }}</li>
+                <li class="list-group-item">운행책임자 : {{ question.bussiness_manager }}</li>
+                <li class="list-group-item">사번: {{ question.bussiness_num }}</li>
+                <li class="list-group-item">출발시간 : {{ question.depart_date }}</li>
+                <li class="list-group-item">도착시간: {{ question.depart_date }}</li>
             </ul>
         </div>
         {#                <div class="card-text" style="white-space: pre-line;">{{ question.Car_num }}</div>#}

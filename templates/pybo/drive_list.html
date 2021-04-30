@@ -66,10 +66,11 @@
                                 <span class="text-danger small ml-2">{{ question.answer_set.count }}</span>
                             {% endif %}
                         </td>
-                        <td>{{ question.cmd_bussiness_num}}</td>
+                        <td>{{ question.bussiness_num}}</td>
                         <td>{{ question.start_date}}</td>
-                        <td>{{ question.position_start }}</td>
-                        <td>{{ question.position_end}}</td>
+                        <td>{{ question.start_pos }}</td>
+                        <td>{{ question.destination_pos}}</td>
+                        <td>{{ question.create_date}}</td>
                         <td>{{ question.author.username }}</td>
                     </tr>
                 {% endfor %}
