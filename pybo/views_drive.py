@@ -1,53 +1,58 @@
-from django.shortcuts import render, redirect, get_object_or_404
-from .models import Question, Answer,CMD_Information
-from .forms import QuestionForm, AnswerForm,CMD_TravelForm,CMD_AnswerForm
+from django.core.paginator import Paginator
+from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
-from django.contrib import messages
-from django.contrib.auth.decorators import login_required
+
+from .forms import QuestionForm, AnswerForm,CMD_QuestionForm
+from .models import CMD_Question,CMD_Answer
 
 
-def index2(request):
-    cmd_list = CMD_Information.objects.order_by('-create_date')
-    context = {'cmd_list': cmd_list}
+def CMD_index(request):
+    # 입력 파라미터
+    page = request.GET.get('page', '1')  # 페이지
+
+    # 조회
+    question_list = CMD_Question.objects.order_by('-create_date')
+
+    # 페이징처리
+    paginator = Paginator(question_list, 10)  # 페이지당 10개씩 보여주기
+    page_obj = paginator.get_page(page)
+
+    context = {'question_list': page_obj}
     return render(request, 'pybo/drive_list.html', context)
 
-def cmd_detail(request, cmd_id):
-    cmd= get_object_or_404(CMD_Information, pk=cmd_id)
-    context = {'cmd': cmd}
+
+def CMD_detail(request, question_id):
+    question = get_object_or_404(CMD_Question, pk=question_id)
+    context = {'question': question}
     return render(request, 'pybo/drive_detail.html', context)
 
 
-
-@login_required(login_url='common:login')
-def cmd_question_create(request):
-    if request.method == 'POST':
-        form = CMD_TravelForm(request.POST)
+def CMD_answer_create(request, question_id):
+    question = get_object_or_404(CMD_Question, pk=question_id)
+    if request.method == "POST":
+        form = AnswerForm(request.POST)
         if form.is_valid():
-            cmd_question = form.save(commit=False)
-            cmd_question.create_date = timezone.now()
-            cmd_question.author = request.user
-            cmd_question.save()
-            return redirect('pybo:index2')
+            answer = form.save(commit=False)
+            answer.create_date = timezone.now()
+            answer.question = question
+            answer.save()
+            return redirect('pybo:detail', question_id=question.id)
     else:
-        form = CMD_TravelForm()
+        form = AnswerForm()
+    context = {'question': question, 'form': form}
+    return render(request, 'pybo/drive_detail.html', context)
+
+
+def CMD_question_create(request):
+
+    if request.method == 'POST':
+        form = CMD_QuestionForm(request.POST)
+        if form.is_valid():
+            question = form.save(commit=False)
+            question.create_date = timezone.now()
+            question.save()
+            return redirect('pybo:CMD_index')
+    else:
+        form = CMD_QuestionForm()
     context = {'form': form}
     return render(request, 'pybo/question_form2.html', context)
-
-
-@login_required(login_url='common:login')
-def cmd_answer_create(request, cmd_id):
-    cmd_list = get_object_or_404(CMD_Information, pk=cmd_id)
-    if request.method == "POST":
-        form = CMD_AnswerForm(request.POST)
-        if form.is_valid():
-            cmd_answer = form.save(commit=False)
-            cmd_answer.create_date = timezone.now()
-            cmd_answer.author = request.user
-            cmd_answer.cmd_list = cmd_list
-            cmd_answer.save()
-            return redirect('pybo:cmd_detail', cmd_id=cmd_list.id)
-    else:
-        form = CMD_AnswerForm()
-    context = {'cmd_list': cmd_list, 'form': form}
-    return render(request, 'pybo/drive_detail.html', context)
-

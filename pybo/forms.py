@@ -1,5 +1,5 @@
 from django import forms
-from pybo.models import Question,Answer,CMD_Information,CMD_Answer
+from pybo.models import Question,Answer,CMD_Question
 
 
 class QuestionForm(forms.ModelForm):
@@ -22,30 +22,29 @@ class AnswerForm(forms.ModelForm):
             'content': '답변내용',
         }
 
-class CMD_TravelForm(forms.ModelForm):
+class CMD_QuestionForm(forms.ModelForm):
     class Meta:
-        model = CMD_Information
-        fields = ['Car_num','cmd_bussiness_num','start_date',
-                  'time_end','time_start','position_start','position_end']
+        model = CMD_Question
+        fields = [ 'Car_num','bussiness_num','bussiness_manager','start_date',
+                   'start_pos','destination_pos','depart_date','arrive_date']
 
         labels = {
-
-            'Car_num':'차량번호',
-            'cmd_bussiness_num': '사번',
-            'start_date': '운행날짜',
-            'time_start': '시작시간',
-            'time_end': '종료시간',
-            'position_start': '시작장소',
-            'position_end':'도착장소'
-
+            'Car_num':'선택차량번호',
+            'bussiness_num':'사번',
+            'bussiness_manager':'운행 책임자',
+            'start_pos':'출발위치',
+            'destination_pos':'도착위치',
+            'start_date':'운행날짜',
+            'depart_date':'출발시간',
+            'arrive_date':'도착시간'
         }
 
-class CMD_AnswerForm(forms.ModelForm):
-    class Meta:
-        model = CMD_Answer
-        fields = ['content']
-        labels = {
-            'content': '답변내용',
-        }
-
-
+# class CMD_AnswerForm(forms.ModelForm):
+#     class Meta:
+#         model = CMD_Answer
+#         fields = ['content']
+#         labels = {
+#             'content': '답변내용',
+#         }
+#
+#

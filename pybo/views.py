@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Question, Answer,CMD_Information
-from .forms import QuestionForm, AnswerForm,CMD_TravelForm
+from .models import Question, Answer
+from .forms import QuestionForm, AnswerForm
 from django.utils import timezone
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required

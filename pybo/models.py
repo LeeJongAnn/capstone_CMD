@@ -26,31 +26,25 @@ class Answer(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
 
 
-class CMD_Information(models.Model):
-
+class CMD_Question(models.Model):
+    subject = models.CharField(max_length=200)
     Car_num = models.CharField(max_length=15)
-    Car_variety = models.CharField(max_length=10)
-    Car_manager = models.CharField(max_length=10)
-    cmd_bussiness_num = models.CharField(max_length=15)
-    start_date = models.DateTimeField(null=True, blank=True)
-
-    time_start = models.DateTimeField(null=True, blank=True)
-    time_end = models.DateTimeField(null=True, blank=True)
-    position_start = models.CharField(max_length=10)
-    position_end = models.CharField(max_length=10)
-
+    bussiness_manager = models.CharField(max_length=10)
+    bussiness_num = models.CharField(max_length=15)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    start_date = models.DateTimeField()
+    start_pos = models.CharField(max_length=10)
+    destination_pos = models.CharField(max_length=10)
+
+    depart_date = models.CharField(max_length=10)
+    arrive_date =models.CharField(max_length=10)
+
     create_date = models.DateTimeField()
     modify_date = models.DateTimeField(null=True, blank=True)
-    def __str__(self):
-         return self.Car_num
-
 
 
 class CMD_Answer(models.Model):
-    cmd = models.ForeignKey(CMD_Information, on_delete=models.CASCADE,null=True)
+    question = models.ForeignKey(Question, on_delete=models.CASCADE)
     content = models.TextField()
     create_date = models.DateTimeField()
-    modify_date = models.DateTimeField(null=True, blank=True)
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
-
