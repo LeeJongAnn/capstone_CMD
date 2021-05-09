@@ -1,5 +1,5 @@
 from django import forms
-from pybo.models import Question,Answer,CMD_Question
+from pybo.models import Question,Answer,CMD_Question,CMD_Answer
 
 
 class QuestionForm(forms.ModelForm):
@@ -39,12 +39,12 @@ class CMD_QuestionForm(forms.ModelForm):
             'arrive_date':'도착시간'
         }
 
-# class CMD_AnswerForm(forms.ModelForm):
-#     class Meta:
-#         model = CMD_Answer
-#         fields = ['content']
-#         labels = {
-#             'content': '답변내용',
-#         }
+class CMD_AnswerForm(forms.ModelForm):
+    class Meta:
+        model = CMD_Answer
+        fields = ['content']
+        labels = {
+            'content': '답변내용',
+        }
 
 

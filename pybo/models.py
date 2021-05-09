@@ -45,6 +45,6 @@ class CMD_Question(models.Model):
 
 
 class CMD_Answer(models.Model):
-    question = models.ForeignKey(CMD_Question, on_delete=models.CASCADE)
+    cmd_question = models.ForeignKey(CMD_Question, on_delete=models.CASCADE)
     content = models.TextField()
     create_date = models.DateTimeField()
