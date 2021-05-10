@@ -7,13 +7,16 @@ import datetime
 class business_apply(models.Model):
 
     name = models.CharField(max_length=10)
-    email = models.CharField(max_length=10)
-    Phone = models.CharField(max_length=10)
+    email = models.CharField(max_length=20)
+    Phone = models.CharField(max_length=15)
     assign_num = models.IntegerField()
     Living = models.CharField(max_length=50)
     gender = models.CharField(max_length=5)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     create_date = models.DateTimeField()
+
+def __str__(self):
+    return self.name
 
 
 

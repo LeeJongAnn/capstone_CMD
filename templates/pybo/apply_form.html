@@ -10,35 +10,11 @@
     <div class="card-header py-3">
     <div class="row">
     <div class="col-sm-12 col-md-6">
-        {#                    <div class="dataTables_length" id="dataTable_length"><label>Show <select name="dataTable_length"#}
-        {#                                                                                             aria-controls="dataTable"#}
-        {#                                                                                             class="custom-select custom-select-sm form-control form-control-sm">#}
-        {#                        <option value="10">10</option>#}
-        {#                        <option value="25">25</option>#}
-        {#                        <option value="50">50</option>#}
-        {#                        <option value="100">100</option>#}
-        {#                    </select> entries</label></div>#}
-        {#                <div class="col-sm-12 col-md-6">#}
-        {#                    <div id="dataTable_filter" class="dataTables_filter"><label>Search:<input type="search"#}
-        {#                                                                                              class="form-control form-control-sm"#}
-        {#                                                                                              placeholder=""#}
-        {#                                                                                              aria-controls="dataTable"></label>#}
-        {#                    </div>#}
-        {#                </div>#}
-        {#        </div>#}
-        <h6 class="m-0 font-weight-bold text-primary">공용차량등록 및 관리</h6>
+        <h6 class="m-0 font-weight-bold text-primary">직원등록 및 관리</h6>
     </div>
     <div class="card-body">
     <div class="table-responsive">
     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-    {#        <thead>#}
-    {#        <tr>#}
-    {#            <th>제목</th>#}
-    {#            <th>작성일자</th>#}
-    {#            <th>글쓴이</th>#}
-    {##}
-    {#        </tr>#}
-    {#        </thead>#}
 
     <tbody>
     <div class="container my-3">
@@ -55,21 +31,23 @@
             </tr>
             </thead>
             <tbody>
-            {% if question_list %}
-                {% for question in question_list %}
+            {% if business_list %}
+                {% for business in business_list %}
                     <tr>
                         <td>{{ forloop.counter }}</td>
                         <td>
-                            <a href="{% url 'pybo:detail' question.id %}">{{ question.Car_num }}</a>
-                            {% if question.answer_set.count > 0 %}
-                                <span class="text-danger small ml-2">{{ question.answer_set.count }}</span>
+                            <a href="{% url 'pybo:employee_detail' business.id %}">{{ business_list.name }}</a>
+                            {% if business.answer_set.count > 0 %}
+                                <span class="text-danger small ml-2">{{ business.answer_set.count }}</span>
                             {% endif %}
                         </td>
-                        <td>{{ question.Car_variety}}</td>
-                        <td>{{ question.Car_manager }}</td>
-                        <td>{{ question.bussiness_num }}</td>
-                        <td>{{ question.create_date }}</td>
-                        <td>{{ question.author.username }}</td>
+                        <td>{{ business.name}}</td>
+                        <td>{{ business.email }}</td>
+                        <td>{{ business.Phone }}</td>
+                        <td>{{ business.assign_num }}</td>
+                        <td>{{ business.gender }}</td>
+                        <td>{{ business.Living }}</td>
+{#                        <td>{{ business.author.username }}</td>#}
                     </tr>
                 {% endfor %}
             {% else %}
@@ -82,9 +60,9 @@
     </div>
     <ul class="pagination justify-content-center">
         <!-- 이전페이지 -->
-        {% if question_list.has_previous %}
+        {% if business_list.has_previous %}
             <li class="page-item">
-                <a class="page-link" href="?page={{ question_list.previous_page_number }}">이전</a>
+                <a class="page-link" href="?page={{ business_list.previous_page_number }}">이전</a>
             </li>
         {% else %}
             <li class="page-item disabled">
@@ -92,9 +70,9 @@
             </li>
         {% endif %}
         <!-- 페이지리스트 -->
-        {% for page_number in question_list.paginator.page_range %}
-            {% if page_number >= question_list.number|add:-5 and page_number <= question_list.number|add:5 %}
-                {% if page_number == question_list.number %}
+        {% for page_number in business_list.paginator.page_range %}
+            {% if page_number >= business_list.number|add:-5 and page_number <= business_list.number|add:5 %}
+                {% if page_number == business_list.number %}
                     <li class="page-item active" aria-current="page">
                         <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
                     </li>
@@ -106,9 +84,9 @@
             {% endif %}
         {% endfor %}
         <!-- 다음페이지 -->
-        {% if question_list.has_next %}
+        {% if business_list.has_next %}
             <li class="page-item">
-                <a class="page-link" href="?page={{ question_list.next_page_number }}">다음</a>
+                <a class="page-link" href="?page={{ business_list.next_page_number }}">다음</a>
             </li>
         {% else %}
             <li class="page-item disabled">

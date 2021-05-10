@@ -8,11 +8,11 @@ from .models import business_apply
 def employee_apply(request):
     business_list = business_apply.objects.order_by('-create_date')
     context = {'business_list': business_list}
-    return render(request,'pybo/apply_form.html')
+    return render(request,'pybo/apply_form.html',context)
 
 
 
-def employee_list(request,business_list_id):
+def employee_detail(request,business_list_id):
     business_list = get_object_or_404(business_apply, pk=business_list_id)
     context = {'business_list': business_list}
     return render(request, 'pybo/apply_detail.html', context)
@@ -32,4 +32,4 @@ def employee_create(request):
     else:
         form = business_applyform()
     context = {'form': form}
-    return render(request, 'pybo/apply_form.html', context)
+    return render(request, 'pybo/apply_create.html', context)

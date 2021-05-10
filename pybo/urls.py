@@ -18,8 +18,9 @@ urlpatterns = [
     # <--------------- 직원등록 --------------------->
 
     path('apply/', views_business.employee_apply, name='employee'),
-    path('apply/<int:business_list_id>/', views_business.employee_list, name='employee_list'),
+    path('apply/<int:business_list_id>/', views_business.employee_detail, name='employee_detail'),
     path('apply/apply_create', views_business.employee_create, name='employee_create'),
+    # path('apply/new_apply_create', views_business.employee_create_real, name='employee_create_real'),
 
     # <---------------- 공용차량 등록관련 화면 ------------------->
     path('<int:question_id>/', views.detail, name='detail'),
