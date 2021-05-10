@@ -6,6 +6,7 @@ from .forms import QuestionForm, AnswerForm,CMD_QuestionForm,CMD_AnswerForm
 from .models import CMD_Question,CMD_Answer
 
 
+
 def CMD_index(request):
     cmd_question_list = CMD_Question.objects.order_by('-create_date')
     context = {'cmd_question_list': cmd_question_list}
@@ -28,7 +29,7 @@ def CMD_answer_create(request, cmd_question_id):
             cmd_answer.author = request.user
             cmd_answer.cmd_question = cmd_question
             cmd_answer.save()
-            return redirect('pybo:CMD_detail', question_id=cmd_question.id)
+            return redirect('pybo:CMD_detail', cmd_question_id=cmd_question.id)
     else:
         form = CMD_AnswerForm()
     context = {'cmd_question': cmd_question, 'form': form}

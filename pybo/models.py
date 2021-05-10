@@ -3,6 +3,21 @@ from django.contrib.auth.models import User
 from django.utils.timezone import timezone
 import datetime
 
+
+class business_apply(models.Model):
+
+    name = models.CharField(max_length=10)
+    email = models.CharField(max_length=10)
+    Phone = models.CharField(max_length=10)
+    assign_num = models.IntegerField()
+    Living = models.CharField(max_length=50)
+    gender = models.CharField(max_length=5)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    create_date = models.DateTimeField()
+
+
+
+
 class Question(models.Model):
     Car_num = models.CharField(max_length=15)
     Car_variety = models.CharField(max_length=10)
@@ -27,6 +42,7 @@ class Answer(models.Model):
 
 
 class CMD_Question(models.Model):
+
     subject = models.CharField(max_length=200)
     Car_num = models.CharField(max_length=15)
     bussiness_manager = models.CharField(max_length=10)
