@@ -16,7 +16,7 @@
             {% endfor %}
         </div>
     {% endif %}
-    <button class="btn btn-facebook"><a href="{% url 'pybo:CMD_index' %}">돌아가기</a></button>
+    <button class="btn btn-facebook"><a href="{% url 'pybo:employee' %}">돌아가기</a></button>
     <h2 class="border-bottom py-2">{{ cmd_question.Car_num }}</h2>
     <div class="card my-3">
 
@@ -24,13 +24,12 @@
     <div class="card-body">
         <div class="card" style="width: 18rem;">
             <ul class="list-group list-group-flush">
-                <li class="list-group-item">차량번호 : {{ cmd_question.Car_num }}</li>
-                <li class="list-group-item">운행책임자 : {{ cmd_question.bussiness_manager }}</li>
-                <li class="list-group-item">사번 : {{ cmd_question.bussiness_num }}</li>
-                <li class="list-group-item">출발시간 : {{ cmd_question.depart_date }}</li>
-                <li class="list-group-item">도착시간 : {{ cmd_question.arrive_date }}</li>
-                <li class="list-group-item">출발지 : {{ cmd_question.start_pos }}</li>
-                <li class="list-group-item">도착지 : {{ cmd_question.destination_pos }}</li>
+                <li class="list-group-item">이름 : {{ business_list.name }}</li>
+                <li class="list-group-item">이메일 : {{ business_list.email }}</li>
+                <li class="list-group-item">사번 : {{ business_list.assign_num }}</li>
+                <li class="list-group-item">성별 : {{ business_list.gender }}</li>
+                <li class="list-group-item">주소지 : {{ business_list.Living }}</li>
+                <li class="list-group-item">핸드폰 번호 : {{ business_list.destination_pos }}</li>
             </ul>
         </div>
         {#                <div class="card-text" style="white-space: pre-line;">{{ question.Car_num }}</div>#}
@@ -38,7 +37,7 @@
         {#                <div class="card-text" style="white-space: nowrap;">{{ question.Car_manager }}</div>#}
         <div class="d-flex justify-content-end">
             <div class="badge badge-light p-2">
-                <div class="mb-2"><span class="author mr-5">작성자</span>{{ cmd_question.author.username }}</div>
+                <div class="mb-2"><span class="author mr-5">작성자</span>{{ business_list.author.username }}</div>
                 {{ cmd_question.create_date }}
             </div>
             {% if cmd_question.modify_date %}
@@ -95,20 +94,20 @@
                         <a href="#" class="delete btn btn-sm btn-outline-secondary "
                            data-uri="{% url 'pybo:answer_delete' answer.id %}">삭제</a>
                     {% endif %}
-                    {#                    <a href="#" class="delete btn btn-sm btn-outline-secondary "#}
-                    {#                       data-uri="{% url 'pybo:answer_delete' answer.id %}">삭제</a>#}
+                                        <a href="#" class="delete btn btn-sm btn-outline-secondary "
+                                           data-uri="{% url 'pybo:answer_delete' answer.id %}">삭제</a>
                 </div>
             </div>
         {% endfor %}
-        <form action="{% url 'pybo:CMD_answer_create' cmd_question.id %}" method="post" class="my-3">
-            {% csrf_token %}
-            <div class="form-group">
-                   <textarea {% if not user.is_authenticated %}disabled{% endif %}
-                             name="content" id="content" class="form-control" rows="10"></textarea>
-            </div>
-            <input type="submit" value="댓글 등록하기" class="btn btn-primary">
-        </form>
-    </div>
+{#        <form action="{% url 'pybo:CMD_answer_create' cmd_question.id %}" method="post" class="my-3">#}
+{#            {% csrf_token %}#}
+{#            <div class="form-group">#}
+{#                   <textarea {% if not user.is_authenticated %}disabled{% endif %}#}
+{#                             name="content" id="content" class="form-control" rows="10"></textarea>#}
+{#            </div>#}
+{#            <input type="submit" value="댓글 등록하기" class="btn btn-primary">#}
+{#        </form>#}
+{#    </div>#}
 
 {% endblock %}
 {% block script %}

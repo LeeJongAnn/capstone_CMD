@@ -36,12 +36,11 @@
                     <tr>
                         <td>{{ forloop.counter }}</td>
                         <td>
-                            <a href="{% url 'pybo:employee_detail' business.id %}">{{ business_list.name }}</a>
+                            <a href="{% url 'pybo:employee_detail' business.id %}">{{ business.name }}</a>
                             {% if business.answer_set.count > 0 %}
                                 <span class="text-danger small ml-2">{{ business.answer_set.count }}</span>
                             {% endif %}
                         </td>
-                        <td>{{ business.name}}</td>
                         <td>{{ business.email }}</td>
                         <td>{{ business.Phone }}</td>
                         <td>{{ business.assign_num }}</td>
