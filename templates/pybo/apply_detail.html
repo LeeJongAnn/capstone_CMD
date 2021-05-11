@@ -17,7 +17,7 @@
         </div>
     {% endif %}
     <button class="btn btn-facebook"><a href="{% url 'pybo:employee' %}">돌아가기</a></button>
-    <h2 class="border-bottom py-2">{{ cmd_question.Car_num }}</h2>
+    <h2 class="border-bottom py-2">{{ business_list.name }}</h2>
     <div class="card my-3">
 
 
@@ -38,12 +38,12 @@
         <div class="d-flex justify-content-end">
             <div class="badge badge-light p-2">
                 <div class="mb-2"><span class="author mr-5">작성자</span>{{ business_list.author.username }}</div>
-                {{ cmd_question.create_date }}
+                {{ business_list.create_date }}
             </div>
             {% if cmd_question.modify_date %}
                 <div class="badge badge-light p-2 text-left mx-3">
                     <div class="mb-2">수정됨</div>
-                    <div>{{ cmd_question.modify_date }}</div>
+                    <div>{{ business_list.modify_date }}</div>
                 </div>
             {% endif %}
         </div>
@@ -66,8 +66,8 @@
         {#        </div>#}
         {##}
         {#    </div>#}
-        <h5 class="border-bottom my-3 py-2">{{ cmd_question.Car_num.answer_set.count }}개의 댓글이 있습니다.</h5>
-        {% for answer in cmd_question.answer_set.all %}
+        <h5 class="border-bottom my-3 py-2">{{ business_list.name.answer_set.count }}개의 댓글이 있습니다.</h5>
+        {% for answer in business_list.answer_set.all %}
             <div class="card my-3">
                 <div class="card-body">
                     <div class="card-text" style="white-space: pre-line;">{{ answer.content }}</div>
@@ -99,15 +99,15 @@
                 </div>
             </div>
         {% endfor %}
-{#        <form action="{% url 'pybo:CMD_answer_create' cmd_question.id %}" method="post" class="my-3">#}
-{#            {% csrf_token %}#}
-{#            <div class="form-group">#}
-{#                   <textarea {% if not user.is_authenticated %}disabled{% endif %}#}
-{#                             name="content" id="content" class="form-control" rows="10"></textarea>#}
-{#            </div>#}
-{#            <input type="submit" value="댓글 등록하기" class="btn btn-primary">#}
-{#        </form>#}
-{#    </div>#}
+        <form action="{% url 'pybo:employee_answer' business_list.id %}" method="post" class="my-3">
+            {% csrf_token %}
+            <div class="form-group">
+                   <textarea {% if not user.is_authenticated %}disabled{% endif %}
+                             name="content" id="content" class="form-control" rows="10"></textarea>
+            </div>
+            <input type="submit" value="댓글 등록하기" class="btn btn-primary">
+        </form>
+    </div>
 
 {% endblock %}
 {% block script %}

@@ -20,7 +20,7 @@ urlpatterns = [
     path('apply/', views_business.employee_apply, name='employee'),
     path('apply/<int:business_list_id>/', views_business.employee_detail, name='employee_detail'),
     path('apply/apply_create', views_business.employee_create, name='employee_create'),
-    # path('apply/new_apply_create', views_business.employee_create_real, name='employee_create_real'),
+    path('apply/employee_answer', views_business.employee_answer, name='employee_answer'),
 
     # <---------------- 공용차량 등록관련 화면 ------------------->
     path('<int:question_id>/', views.detail, name='detail'),
