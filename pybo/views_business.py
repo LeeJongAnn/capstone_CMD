@@ -55,13 +55,13 @@ def employee_modify(request, business_list_id):
     context = {'form': form}
     return render(request, 'pybo/apply_create.html', context)
 
-#
-# @login_required(login_url='common:login')
-# def question_delete(request, question_id):
-#     question = get_object_or_404(Question, pk=question_id)
-#     if request.user != question.author:
-#         messages.error(request, '삭제권한이 없습니다')
-#         return redirect('pybo:detail', question_id=question.id)
-#     question.delete()
-#     return redirect('pybo:index')
-#
+
+@login_required(login_url='common:login')
+def employee_delete(request, business_list_id):
+    business = get_object_or_404(business_apply, pk=business_list_id)
+    if request.user != business.author:
+        messages.error(request, '삭제권한이 없습니다')
+        return redirect('pybo:employee_detail', business_list_id=business.id)
+    business.delete()
+    return redirect('pybo:employee')
+
