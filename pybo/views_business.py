@@ -1,9 +1,10 @@
+from django.contrib import messages
 from django.core.paginator import Paginator
 from django.shortcuts import render,get_object_or_404,redirect
 from .forms import business_applyform
 from django.utils import timezone
 from .models import business_apply
-
+from django.contrib.auth.decorators import login_required
 
 def employee_apply(request):
     business_list = business_apply.objects.order_by('-create_date')
@@ -33,3 +34,34 @@ def employee_create(request):
         form = business_applyform()
     context = {'form': form}
     return render(request, 'pybo/apply_create.html', context)
+
+@login_required(login_url='common:login')
+def employee_modify(request, business_list_id):
+    business = get_object_or_404(business_apply, pk=business_list_id)
+    if request.user != business.author:
+        messages.error(request, '수정권한이 없습니다')
+        return redirect('pybo:employee_detail', business_list_id=business.id)
+
+    if request.method == "POST":
+        form = business_applyform(request.POST, instance=business)
+        if form.is_valid():
+            business = form.save(commit=False)
+            business.author = request.user
+            business.modify_date = timezone.now()  # 수정일시 저장
+            business.save()
+            return redirect('pybo:employee_detail', business_list_id=business.id)
+    else:
+        form = business_applyform(instance=business)
+    context = {'form': form}
+    return render(request, 'pybo/apply_create.html', context)
+
+#
+# @login_required(login_url='common:login')
+# def question_delete(request, question_id):
+#     question = get_object_or_404(Question, pk=question_id)
+#     if request.user != question.author:
+#         messages.error(request, '삭제권한이 없습니다')
+#         return redirect('pybo:detail', question_id=question.id)
+#     question.delete()
+#     return redirect('pybo:index')
+#
