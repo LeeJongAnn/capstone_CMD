@@ -7,7 +7,8 @@ from . import views_business
 app_name = 'pybo'
 
 urlpatterns = [
-
+    # <--------------- 공용차량등록일지 관련 ---------------- >
+    path('map/', views.map, name='map'),
     # <--------------- 공용차량등록일지 관련 ---------------- >
     path('drive_list/', views_drive.CMD_index, name='CMD_index'),
     path('drive_list/<int:cmd_question_id>/', views_drive.CMD_detail, name='CMD_detail'),
