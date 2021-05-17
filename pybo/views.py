@@ -1,9 +1,11 @@
+from django.core.paginator import Paginator
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Question, Answer
 from .forms import QuestionForm, AnswerForm
 from django.utils import timezone
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
 
 
 # Create your views here.
@@ -12,15 +14,27 @@ def static(request):
 
 
 def index(request):
+    page = request.GET.get('page', '1')  # 페이지
+    kw = request.GET.get('kw', '')  # 검색어
+
+    # 조회
     question_list = Question.objects.order_by('-create_date')
-    context = {'question_list': question_list}
+    if kw:
+        question_list = question_list.filter(
+            Q(Car_num__icontains=kw)   # 제목검색
+            # Q(author__username__icontains=kw) |  # 질문 글쓴이검색
+            # Q(answer__author__username__icontains=kw)  # 답변 글쓴이검색
+        ).distinct()
+    paginator = Paginator(question_list, 10)  # 페이지당 10개씩 보여주기
+    page_obj = paginator.get_page(page)
+
+    context = {'question_list': page_obj, 'page': page, 'kw': kw}
     return render(request, 'question_list.html', context)
 
 def detail(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
     context = {'question': question}
     return render(request, 'question_detail.html', context)
-
 
 
 @login_required(login_url='common:login')
@@ -55,7 +69,6 @@ def answer_create(request, question_id):
         form = AnswerForm()
     context = {'question': question, 'form': form}
     return render(request, 'question_detail.html', context)
-
 
 
 @login_required(login_url='common:login')
@@ -109,6 +122,7 @@ def answer_modify(request, answer_id):
     context = {'answer': answer, 'form': form}
     return render(request, 'answer_form.html', context)
 
+
 @login_required(login_url='common:login')
 def answer_delete(request, answer_id):
     answer = get_object_or_404(Answer, pk=answer_id)
@@ -117,4 +131,3 @@ def answer_delete(request, answer_id):
     else:
         answer.delete()
     return redirect('pybo:detail', question_id=answer.question.id)
-

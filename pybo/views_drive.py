@@ -4,14 +4,28 @@ from django.utils import timezone
 
 from .forms import QuestionForm, AnswerForm,CMD_QuestionForm,CMD_AnswerForm
 from .models import CMD_Question,CMD_Answer
-
+from django.db.models import Q
 
 
 def CMD_index(request):
-    cmd_question_list = CMD_Question.objects.order_by('-create_date')
-    context = {'cmd_question_list': cmd_question_list}
-    return render(request, 'pybo/drive_list.html', context)
 
+
+    page = request.GET.get('page', '1')  # 페이지
+    kw = request.GET.get('kw', '')  # 검색어
+
+    # 조회
+    cmd_question_list = CMD_Question.objects.order_by('-create_date')
+    if kw:
+        cmd_question_list = cmd_question_list.filter(
+            Q(Car_num__icontains=kw)   # 제목검색
+            # Q(author__username__icontains=kw) |  # 질문 글쓴이검색
+            # Q(answer__author__username__icontains=kw)  # 답변 글쓴이검색
+        ).distinct()
+    paginator = Paginator(cmd_question_list, 10)  # 페이지당 10개씩 보여주기
+    page_obj = paginator.get_page(page)
+
+    context = {'cmd_question_list': page_obj, 'page': page, 'kw': kw}
+    return render(request, 'pybo/drive_list.html', context)
 
 def CMD_detail(request, cmd_question_id):
     cmd_question = get_object_or_404(CMD_Question, pk=cmd_question_id)

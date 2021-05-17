@@ -106,5 +106,8 @@
     {#    </a>#}
 
     <!-- /.container-fluid -->
-
+<form id="searchForm" method="get" action="{% url 'pybo:employee' %}">
+    <input type="hidden" id="kw" name="kw" value="{{ kw|default_if_none:'' }}">
+    <input type="hidden" id="page" name="page" value="{{ page }}">
+</form>
 {% endblock %}
