@@ -13,7 +13,6 @@ def CMD_index(request):
     page = request.GET.get('page', '1')  # 페이지
     kw = request.GET.get('kw', '')  # 검색어
 
-    # 조회
     cmd_question_list = CMD_Question.objects.order_by('-create_date')
     if kw:
         cmd_question_list = cmd_question_list.filter(

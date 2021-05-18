@@ -103,7 +103,7 @@
     </ul>
     <!-- 페이징처리 끝 -->
     {% if user.is_authenticated %}
-        <a href="{% url 'pybo:question_create' %}" class="btn btn-primary mt-5">글 등록하기</a>
+        <a href="{% url 'pybo:question_create' %}" class="btn btn-primary mt-5">공용차량 등록하기</a>
     {% endif %}
 
     <form id="searchForm" method="get" action="{% url 'index' %}">
