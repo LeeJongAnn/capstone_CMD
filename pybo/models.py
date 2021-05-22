@@ -4,6 +4,7 @@ from django.utils.timezone import timezone
 import datetime
 
 
+
 class business_apply(models.Model):
 
     name = models.CharField(max_length=10)
