@@ -9,11 +9,13 @@ app_name = 'pybo'
 urlpatterns = [
     # <--------------- 지도 관련 ---------------- >
     path('map/', views.map, name='map'),
-    # <--------------- 공용차량등록일지 관련 ---------------- >
+    # <--------------- 공용차량운행일지 관련 ---------------- >
     path('drive_list/', views_drive.CMD_index, name='CMD_index'),
     path('drive_list/<int:cmd_question_id>/', views_drive.CMD_detail, name='CMD_detail'),
     path('drive_list/answer/create/<int:cmd_question_id>/', views_drive.CMD_answer_create, name='CMD_answer_create'),
     path('drive_list/question/create/', views_drive.CMD_question_create, name='CMD_question_create'),
+    path('drive_list/question/modify/<int:cmd_question_id>',views_drive.cmd_question_modify,name = 'CMD_question_modify'),
+    path('drive_list/question/delete/<int:cmd_question_id>',views_drive.cmd_question_delete,name = 'CMD_question_delete'),
     path('static/', views.static, name='static'),
     path('', views.index, name='index'),
     # <--------------- 직원등록 --------------------->

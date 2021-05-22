@@ -49,24 +49,22 @@
             {% endif %}
         </div>
 
-        {#            {% if request.user == cmd.author %}#}
-        {#                <div class="my-3">#}
-        {#                    <a href="{% url 'pybo:question_modify' cmd.id %}"#}
-        {#                       class="btn btn-sm btn-outline-secondary">수정</a>#}
-        {##}
-        {#                </div>#}
-        {#                <div class="my-3">#}
-        {#                    <a href="{% url 'pybo:question_delete' cmd.id %}"#}
-        {#                       class="btn btn-sm btn-outline-secondary">삭제</a>#}
-        {##}
-        {#                </div>#}
-        {#                <a href="#" class="delete btn btn-sm btn-outline-secondary"#}
-        {#                   data-uri="{% url 'pybo:question_delete' question.id %}">삭제</a>#}
-        {#            {% endif %}#}
-        {##}
-        {#        </div>#}
-        {##}
-        {#    </div>#}
+                    {% if request.user == cmd_question.author %}
+                        <div class="my-3">
+                            <a href="{% url 'pybo:CMD_question_modify' cmd_question.id %}"
+                               class="btn btn-sm btn-outline-secondary">수정</a>
+
+                        </div>
+                        <div class="my-3">
+                            <a href="{% url 'pybo:CMD_question_delete' cmd_question.id %}"
+                               class="btn btn-sm btn-outline-secondary">삭제</a>
+
+                        </div>
+                    {% endif %}
+
+                </div>
+
+            </div>
        {% comment %} <h5 class="border-bottom my-3 py-2">{{ cmd_question.Car_num.answer_set.count }}개의 댓글이 있습니다.</h5>
         {% for answer in cmd_question.answer_set.all %}
             <div class="card my-3">
