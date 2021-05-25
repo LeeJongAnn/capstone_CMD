@@ -14,9 +14,9 @@
     <script type="text/javascript"
             src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=mnpwhxn6ae&submodules=geocoder"></script>
     <div class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search " style="">
-        <input id="address" class="form-control bg-light border-5 small kw" type="text" placeholder="검색할 주소"
+        <input id="address" class="form-control bg-light border-5 small mb-2" type="text" placeholder="검색할 주소"
                value="">
-        <button class="btn btn-primary" id="submit" type="button" value="주소 검색"><i class="fas fa-search fa-sm"></i>
+        <button class="btn btn-primary mb-2" id="submit" type="button" value="주소 검색"><i class="fas fa-search fa-sm"></i>
         </button>
     </div>
     <div id="map" style="width:100%;height:700px;"></div>
@@ -150,7 +150,7 @@
                 searchAddressToCoordinate($('#address').val());
             });
 
-            searchAddressToCoordinate('춘천시');
+            searchAddressToCoordinate('강원도 춘천시 교동 32-1');
         }
 
         naver.maps.onJSContentLoaded = initGeocoder;
