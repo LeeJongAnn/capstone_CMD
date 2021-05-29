@@ -1,7 +1,7 @@
 from django.core.paginator import Paginator
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Question, Answer
-from .forms import QuestionForm, AnswerForm
+from .forms import  QuestionForm, AnswerForm
 from django.utils import timezone
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -10,11 +10,33 @@ from django.db.models import Q
 
 # Create your views here.
 
+
+
+# def book_list(request):
+#     books = Book.objects.all()
+#     return render(request, 'book_list.html',{'books':books})
+#
+#
+# def upload_book(request):
+#     if request.method == "POST":
+#         form = BookForm(request.POST, request.FILES)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('pybo:book_list')
+#     else:
+#         form = BookForm()
+#     return render(request, 'upload_book.html', {'form': form})
+#
+
 def static(request):
     return render(request, 'test2.html')
 
+
 def map(request):
     return render(request, 'pybo/map.html')
+
+def new_map(request):
+    return render(request, 'pybo/new_map.html')
 
 
 def index(request):
@@ -25,7 +47,7 @@ def index(request):
     question_list = Question.objects.order_by('-create_date')
     if kw:
         question_list = question_list.filter(
-            Q(Car_num__icontains=kw)   # 제목검색
+            Q(Car_num__icontains=kw)  # 제목검색
             # Q(author__username__icontains=kw) |  # 질문 글쓴이검색
             # Q(answer__author__username__icontains=kw)  # 답변 글쓴이검색
         ).distinct()
@@ -34,6 +56,7 @@ def index(request):
 
     context = {'question_list': page_obj, 'page': page, 'kw': kw}
     return render(request, 'question_list.html', context)
+
 
 def detail(request, question_id):
     question = get_object_or_404(Question, pk=question_id)

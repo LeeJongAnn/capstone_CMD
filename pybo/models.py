@@ -62,6 +62,9 @@ class CMD_Question(models.Model):
     create_date = models.DateTimeField()
     modify_date = models.DateTimeField(null=True, blank=True)
 
+    Lat = models.CharField(max_length=30)
+    Long = models.CharField(max_length=30)
+
 
 class CMD_Answer(models.Model):
     cmd_question = models.ForeignKey(CMD_Question, on_delete=models.CASCADE)

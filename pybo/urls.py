@@ -1,14 +1,18 @@
 from django.urls import path
-
+from django.conf import settings
 from . import views
 from . import views_drive
 from . import views_business
+from django.conf.urls.static import static
 
 app_name = 'pybo'
 
 urlpatterns = [
+    # path('book/',views.book_list,name = "book_list"),
+    # path('book/upload/',views.upload_book,name = "upload_book"),
     # <--------------- 지도 관련 ---------------- >
     path('map/', views.map, name='map'),
+    path('new_map/', views.new_map, name='new_map'),
     # <--------------- 공용차량운행일지 관련 ---------------- >
     path('drive_list/', views_drive.CMD_index, name='CMD_index'),
     path('drive_list/<int:cmd_question_id>/', views_drive.CMD_detail, name='CMD_detail'),
@@ -36,3 +40,8 @@ urlpatterns = [
 
     # path('answer/delete/<int:answer_id>/', views.answer_delete, name='answer_delete'),
 ]
+
+
+if settings.DEBUG:
+    urlpatterns+=static(settings.MEDIA_URL,document_root=settings.MEDIA_URL)
+

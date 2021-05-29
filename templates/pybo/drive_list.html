@@ -53,6 +53,8 @@
                                         <th>도착지</th>
                                         <th>작성날짜</th>
                                         <th>작성자</th>
+                                        <th>위도</th>
+                                        <th>경도</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -72,6 +74,8 @@
                                                 <td>{{ cmd_question.destination_pos }}</td>
                                                 <td>{{ cmd_question.create_date }}</td>
                                                 <td>{{ cmd_question.author.username }}</td>
+                                                <td>{{ cmd_question.Lat }}</td>
+                                                <td>{{ cmd_question.Long }}</td>
                                             </tr>
                                         {% endfor %}
                                     {% else %}
