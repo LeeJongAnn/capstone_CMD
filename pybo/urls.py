@@ -8,6 +8,7 @@ from django.conf.urls.static import static
 app_name = 'pybo'
 
 urlpatterns = [
+    # path('landing/',views.landing,name="landing")
     # path('book/',views.book_list,name = "book_list"),
     # path('book/upload/',views.upload_book,name = "upload_book"),
     # <--------------- 지도 관련 ---------------- >

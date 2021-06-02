@@ -65,15 +65,16 @@ def CMD_question_create(request):
     return render(request, 'pybo/question_form2.html', context)
 
 
+
 @login_required(login_url='common:login')
 def cmd_question_modify(request, cmd_question_id):
     cmd_question = get_object_or_404(CMD_Question, pk=cmd_question_id)
     if request.user != cmd_question.author:
         messages.error(request, '수정권한이 없습니다')
-        return redirect('pybo:employee_detail', cmd_question_id=cmd_modify.id)
+        return redirect('pybo:CMD_detail', cmd_question_id=cmd_question.id)
 
     if request.method == "POST":
-        form = CMD_QuestionForm(request.POST, instance=cmd_question)
+        form = QuestionForm(request.POST, instance=cmd_question)
         if form.is_valid():
             cmd_question = form.save(commit=False)
             cmd_question.author = request.user
@@ -81,9 +82,10 @@ def cmd_question_modify(request, cmd_question_id):
             cmd_question.save()
             return redirect('pybo:CMD_detail', cmd_question_id=cmd_question.id)
     else:
-        form = CMD_QuestionForm(instance=cmd_question)
+        form = QuestionForm(instance=cmd_question)
     context = {'form': form}
-    return render(request, 'pybo/drive_detail.html', context)
+    return render(request, 'pybo/question_form2.html', context)
+
 
 
 @login_required(login_url='common:login')

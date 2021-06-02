@@ -10,24 +10,6 @@ from django.db.models import Q
 
 # Create your views here.
 
-
-
-# def book_list(request):
-#     books = Book.objects.all()
-#     return render(request, 'book_list.html',{'books':books})
-#
-#
-# def upload_book(request):
-#     if request.method == "POST":
-#         form = BookForm(request.POST, request.FILES)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('pybo:book_list')
-#     else:
-#         form = BookForm()
-#     return render(request, 'upload_book.html', {'form': form})
-#
-
 def static(request):
     return render(request, 'test2.html')
 

@@ -57,7 +57,7 @@ class CMD_Question(models.Model):
     destination_pos = models.CharField(max_length=10)
 
     depart_date = models.CharField(max_length=25)
-    arrive_date =models.CharField(max_length=25)
+    arrive_date = models.CharField(max_length=25)
 
     create_date = models.DateTimeField()
     modify_date = models.DateTimeField(null=True, blank=True)
