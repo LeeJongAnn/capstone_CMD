@@ -74,7 +74,7 @@ def cmd_question_modify(request, cmd_question_id):
         return redirect('pybo:CMD_detail', cmd_question_id=cmd_question.id)
 
     if request.method == "POST":
-        form = QuestionForm(request.POST, instance=cmd_question)
+        form = CMD_QuestionForm(request.POST, instance=cmd_question)
         if form.is_valid():
             cmd_question = form.save(commit=False)
             cmd_question.author = request.user
