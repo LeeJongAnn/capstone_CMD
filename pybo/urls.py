@@ -8,19 +8,24 @@ from django.conf.urls.static import static
 app_name = 'pybo'
 
 urlpatterns = [
-    # path('landing/',views.landing,name="landing")
+    path('test/', views.landing, name='landing'),
+    path('pybo/', views.mainpage, name='mainpage'),
     # path('book/',views.book_list,name = "book_list"),
     # path('book/upload/',views.upload_book,name = "upload_book"),
     # <--------------- 지도 관련 ---------------- >
     path('map/', views.map, name='map'),
     path('new_map/', views.new_map, name='new_map'),
+    # path('landing/', views.landing, name="landing"),
     # <--------------- 공용차량운행일지 관련 ---------------- >
+    # path('intro/', views.intro, name='intro'),
     path('drive_list/', views_drive.CMD_index, name='CMD_index'),
     path('drive_list/<int:cmd_question_id>/', views_drive.CMD_detail, name='CMD_detail'),
     path('drive_list/answer/create/<int:cmd_question_id>/', views_drive.CMD_answer_create, name='CMD_answer_create'),
     path('drive_list/question/create/', views_drive.CMD_question_create, name='CMD_question_create'),
-    path('drive_list/question/modify/<int:cmd_question_id>',views_drive.cmd_question_modify,name = 'CMD_question_modify'),
-    path('drive_list/question/delete/<int:cmd_question_id>',views_drive.cmd_question_delete,name = 'CMD_question_delete'),
+    path('drive_list/question/modify/<int:cmd_question_id>', views_drive.cmd_question_modify,
+         name='CMD_question_modify'),
+    path('drive_list/question/delete/<int:cmd_question_id>', views_drive.cmd_question_delete,
+         name='CMD_question_delete'),
     path('static/', views.static, name='static'),
     path('', views.index, name='index'),
     # <--------------- 직원등록 --------------------->
@@ -42,7 +47,5 @@ urlpatterns = [
     # path('answer/delete/<int:answer_id>/', views.answer_delete, name='answer_delete'),
 ]
 
-
 if settings.DEBUG:
-    urlpatterns+=static(settings.MEDIA_URL,document_root=settings.MEDIA_URL)
-
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_URL)
