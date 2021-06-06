@@ -8,7 +8,6 @@ from django.conf.urls.static import static
 app_name = 'pybo'
 
 urlpatterns = [
-    path('test/', views.landing, name='landing'),
     path('pybo/', views.mainpage, name='mainpage'),
     # path('book/',views.book_list,name = "book_list"),
     # path('book/upload/',views.upload_book,name = "upload_book"),
