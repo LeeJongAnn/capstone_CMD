@@ -65,6 +65,11 @@
                 <i class="fas fa-laugh-wink"></i>
                 <span>팀소개</span></a>
         </li>
+        <li class="nav-item active">
+            <a class="nav-link" href={% url 'pybo:intro' %}>
+                <i class="fas fa-allergies"></i>
+                <span>사이트 소개</span></a>
+        </li>
         <!-- Heading -->
         <div class="sidebar-heading">
             Interface
@@ -325,7 +330,6 @@
                              aria-labelledby="userDropdown">
                             <a class="dropdown-item" href="#">
 
-
                                 {% if user.is_authenticated %}
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
@@ -355,13 +359,14 @@
 
             <!-- Begin Page Content -->
             <div class="container-fluid">
-
                 {% block content %}
 
                     <form id="searchForm" method="get" action="{% url 'index' %}">
                         <input type="hidden" id="kw" name="kw" value="{{ kw|default_if_none:'' }}">
                         <input type="hidden" id="page" name="page" value="{{ page }}">
                     </form>
+
+
                 {% endblock %}
                 <!-- Content Row -->
 
@@ -426,6 +431,5 @@
                     </script>
                 {% endblock %}
 </body>
-
 </html>
 

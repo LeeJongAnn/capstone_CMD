@@ -10,6 +10,10 @@ from django.db.models import Q
 
 # Create your views here.
 
+def intro(request):
+    return render(request,'pybo/main.html')
+def intro_detail(request):
+    return render(request,'landing.html')
 def mainpage(request):
     return render(request, 'mainpage.html')
 

@@ -8,7 +8,9 @@ from django.conf.urls.static import static
 app_name = 'pybo'
 
 urlpatterns = [
-    path('pybo/', views.mainpage, name='mainpage'),
+    path('team/', views.mainpage, name='mainpage'),
+    path('intro_detail/', views.intro_detail, name='intro_detail'),
+
     # path('book/',views.book_list,name = "book_list"),
     # path('book/upload/',views.upload_book,name = "upload_book"),
     # <--------------- 지도 관련 ---------------- >
@@ -26,7 +28,8 @@ urlpatterns = [
     path('drive_list/question/delete/<int:cmd_question_id>', views_drive.cmd_question_delete,
          name='CMD_question_delete'),
     path('static/', views.static, name='static'),
-    path('', views.index, name='index'),
+    path('', views.intro, name='intro'),
+    path('index/', views.index, name='index'),
     # <--------------- 직원등록 --------------------->
 
     path('apply/', views_business.employee_apply, name='employee'),
