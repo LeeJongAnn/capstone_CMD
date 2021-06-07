@@ -49,4 +49,5 @@ urlpatterns = [
     # path('answer/delete/<int:answer_id>/', views.answer_delete, name='answer_delete'),
 ]
 
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
