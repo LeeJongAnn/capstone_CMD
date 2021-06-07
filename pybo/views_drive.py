@@ -52,7 +52,7 @@ def CMD_answer_create(request, cmd_question_id):
 
 def CMD_question_create(request):
     if request.method == 'POST':
-        form = CMD_QuestionForm(request.POST)
+        form = CMD_QuestionForm(request.POST,request.FILES)
         if form.is_valid():
             cmd_question = form.save(commit=False)
             cmd_question.create_date = timezone.now()

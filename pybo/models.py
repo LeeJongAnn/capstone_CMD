@@ -3,8 +3,6 @@ from django.contrib.auth.models import User
 from django.utils.timezone import timezone
 import datetime
 
-
-
 class business_apply(models.Model):
 
     name = models.CharField(max_length=10)
@@ -45,7 +43,7 @@ class Answer(models.Model):
 
 
 class CMD_Question(models.Model):
-
+    pdf = models.FileField(upload_to='books/pdfs/')
     subject = models.CharField(max_length=200)
     Car_num = models.CharField(max_length=15)
     bussiness_manager = models.CharField(max_length=10)

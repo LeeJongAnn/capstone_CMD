@@ -1,16 +1,17 @@
 from django.urls import path
+from django.conf.urls import url
 from django.conf import settings
 from . import views
 from . import views_drive
 from . import views_business
 from django.conf.urls.static import static
+from django.conf import settings
 
 app_name = 'pybo'
 
 urlpatterns = [
     path('team/', views.mainpage, name='mainpage'),
     path('intro_detail/', views.intro_detail, name='intro_detail'),
-
     # path('book/',views.book_list,name = "book_list"),
     # path('book/upload/',views.upload_book,name = "upload_book"),
     # <--------------- 지도 관련 ---------------- >
@@ -45,9 +46,8 @@ urlpatterns = [
     path('question/delete/<int:question_id>/', views.question_delete, name='question_delete'),
     path('answer/modify/<int:answer_id>/', views.answer_modify, name='answer_modify'),
     path('answer/delete/<int:answer_id>/', views.answer_delete, name='answer_delete'),
-
     # path('answer/delete/<int:answer_id>/', views.answer_delete, name='answer_delete'),
 ]
 
 if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_URL)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

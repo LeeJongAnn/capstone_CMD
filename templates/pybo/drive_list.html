@@ -55,6 +55,7 @@
                                         <th>작성자</th>
                                         <th>위도</th>
                                         <th>경도</th>
+                                        <th>파일</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -76,6 +77,7 @@
                                                 <td>{{ cmd_question.author.username }}</td>
                                                 <td>{{ cmd_question.Lat }}</td>
                                                 <td>{{ cmd_question.Long }}</td>
+                                                <td><a href = "{{ cmd_question.pdf.url }}" class= "btn btn-primary">download</a> </td>
                                             </tr>
                                         {% endfor %}
                                     {% else %}

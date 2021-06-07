@@ -2,10 +2,7 @@ from django import forms
 from pybo.models import Question,Answer,CMD_Question,CMD_Answer,business_apply
 
 
-# class BookForm(forms.ModelForm):
-#     class Meta:
-#         model = Book
-#         fields = ('title','author','pdf')
+
 
 class business_applyform(forms.ModelForm):
     class Meta:
@@ -44,7 +41,7 @@ class AnswerForm(forms.ModelForm):
 class CMD_QuestionForm(forms.ModelForm):
     class Meta:
         model = CMD_Question
-        fields = [ 'Car_num','bussiness_num','bussiness_manager','start_date',
+        fields = [ 'Car_num','bussiness_num','bussiness_manager','start_date','pdf',
                    'start_pos','destination_pos','depart_date','arrive_date','Lat','Long']
 
         labels = {
