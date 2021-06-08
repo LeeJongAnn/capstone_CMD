@@ -10,6 +10,7 @@ from django.conf import settings
 app_name = 'pybo'
 
 urlpatterns = [
+    path('index/', views.index, name='index'),
     path('team/', views.mainpage, name='mainpage'),
     path('intro_detail/', views.intro_detail, name='intro_detail'),
     # path('book/',views.book_list,name = "book_list"),
@@ -30,7 +31,7 @@ urlpatterns = [
          name='CMD_question_delete'),
     path('static/', views.static, name='static'),
     path('', views.intro, name='intro'),
-    path('index/', views.index, name='index'),
+
     # <--------------- 직원등록 --------------------->
 
     path('apply/', views_business.employee_apply, name='employee'),

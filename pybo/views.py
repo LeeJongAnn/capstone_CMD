@@ -12,6 +12,8 @@ from django.db.models import Q
 
 def intro(request):
     return render(request,'pybo/main.html')
+
+
 def intro_detail(request):
     return render(request,'landing.html')
 def mainpage(request):
