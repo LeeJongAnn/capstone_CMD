@@ -12,6 +12,7 @@ class business_apply(models.Model):
     Living = models.CharField(max_length=100)
     gender = models.CharField(max_length=5)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
+    office = models.CharField(max_length=10)
     create_date = models.DateTimeField()
 
 def __str__(self):
