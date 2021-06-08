@@ -7,14 +7,15 @@ from pybo.models import Question,Answer,CMD_Question,CMD_Answer,business_apply
 class business_applyform(forms.ModelForm):
     class Meta:
         model = business_apply
-        fields = ['name','email','Living','gender','Phone','assign_num']
+        fields = ['name','email','Living','gender','Phone','assign_num','office']
         labels = {
             'name': '이름',
             'email': '이메일',
             'Phone': '핸드폰 번호',
             'assign_num' : '부여받은 사번',
             'gender': '성별',
-            'Living': '주소지'
+            'Living': '주소지',
+            'office':'직위'
         }
 
 
