@@ -41,41 +41,6 @@
 
         <!-- Divider -->
         <hr class="sidebar-divider my-0">
-
-        <!-- Nav Item - Dashboard -->
-        <li class="nav-item active">
-            <a class="nav-link" href={% url 'pybo:static' %}>
-                <i class="fas fa-fw fa-tachometer-alt"></i>
-                <span>사이트 설문조사</span></a>
-        </li>
-
-        <!-- Divider -->
-        <li class="nav-item active">
-            <a class="nav-link" href={% url 'pybo:map' %}>
-                <i class="fas fa-map"></i>
-                <span>지도 주소 검색</span></a>
-        </li>  <li class="nav-item active">
-            <a class="nav-link" href={% url 'pybo:new_map' %}>
-                <i class="fas fa-map"></i>
-                <span>지도 좌표</span></a>
-        </li>
-         <hr class="sidebar-divider">
-        <li class="nav-item active">
-            <a class="nav-link" href={% url 'pybo:mainpage' %}>
-                <i class="fas fa-laugh-wink"></i>
-                <span>팀소개</span></a>
-        </li>
-        <li class="nav-item active">
-            <a class="nav-link" href={% url 'pybo:intro' %}>
-                <i class="fas fa-allergies"></i>
-                <span>사이트 소개</span></a>
-        </li>
-        <!-- Heading -->
-        <div class="sidebar-heading">
-            Interface
-        </div>
-
-        <!-- Nav Item - Pages Collapse Menu -->
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"
                aria-expanded="true" aria-controls="collapseTwo">
@@ -91,6 +56,7 @@
             </div>
         </li>
 
+
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                aria-expanded="true" aria-controls="collapseTwo">
@@ -104,6 +70,46 @@
                 </div>
             </div>
         </li>
+        <!-- Nav Item - Dashboard -->
+
+
+        <!-- Divider -->
+        <li class="nav-item active">
+            <a class="nav-link" href={% url 'pybo:map' %}>
+                <i class="fas fa-map"></i>
+                <span>지도 주소 검색</span></a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" href={% url 'pybo:new_map' %}>
+                <i class="fas fa-map"></i>
+                <span>지도 좌표</span></a>
+        </li>
+        <hr class="sidebar-divider">
+        <li class="nav-item active">
+            <a class="nav-link" href={% url 'pybo:mainpage' %}>
+                <i class="fas fa-laugh-wink"></i>
+                <span>팀소개</span></a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" href={% url 'pybo:intro' %}>
+                <i class="fas fa-allergies"></i>
+                <span>사이트 소개</span></a>
+        </li>
+
+
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            기타
+        </div>
+
+        <!-- Nav Item - Pages Collapse Menu -->
+
+        <li class="nav-item active">
+            <a class="nav-link" href={% url 'pybo:static' %}>
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>사이트 설문조사</span></a>
+        </li>
+
 
         <!-- Divider -->
         <hr class="sidebar-divider">
@@ -132,15 +138,15 @@
                 </button>
 
                 <!-- Topbar Search -->
-{#                <div class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search-3">#}
-{#                    <div class="input-group">#}
-{#                        <input type="text" class="form-control bg-light border-0 small kw" value="{{ kw|default_if_none:'' }}">#}
-{#                        <div class="input-group-append">#}
-{#                            <button class="btn btn-primary" type="button" id="btn_search">찾기</button>#}
-{#                            <i class="fas fa-search fa-sm"></i>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                </div>#}
+                {#                <div class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search-3">#}
+                {#                    <div class="input-group">#}
+                {#                        <input type="text" class="form-control bg-light border-0 small kw" value="{{ kw|default_if_none:'' }}">#}
+                {#                        <div class="input-group-append">#}
+                {#                            <button class="btn btn-primary" type="button" id="btn_search">찾기</button>#}
+                {#                            <i class="fas fa-search fa-sm"></i>#}
+                {#                        </div>#}
+                {#                    </div>#}
+                {#                </div>#}
 
 
                 <form
